@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aventura Interactiva de Carlos</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #1b1b1b;
+            color: #ebebeb;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            font-size: 32px;
+            margin: 20px 0;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #fca311; /* Toque de color */
+        }
+
+        p {
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        .opciones {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+        .opcion {
+            font-size: 20px;
+            padding: 10px 20px;
+            margin: 0 10px;
+            border: 2px solid #ebebeb;
+            border-radius: 5px;
+            background-color: #2b2b2b;
+            color: #ebebeb;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .opcion:hover {
+            background-color: #3b3b3b;
+            color: #fca311; /* Toque de color */
+        }
+
+        .narracion {
+            opacity: 0;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #2b2b2b;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+            transition: opacity 1s ease;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .narracion p {
+            margin: 10px 0;
+        }
+
+        .mostrar {
+            opacity: 1;
+        }
+
+        .transicion-entrada {
+            animation: aparecer 1s ease;
+        }
+
+        @keyframes aparecer {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Las leyendas de Carlos</h1>
+    <p>En este día especial, Carlos tiene la oportunidad de embarcarse en emocionantes aventuras en diferentes mundos.
+        ¿Qué camino tomará?</p>
+    <div class="opciones">
+        <button class="opcion" onclick="iniciarAventura('doom')">Leyenda de la Gloria <div>(Doom Eternal)</div></button>
+        <button class="opcion" onclick="iniciarAventura('dnd')">Leyenda de la Sabiduría <div>(Dragones y Mazmorras)</div></button>
+        <button class="opcion" onclick="iniciarAventura('starwars')">Leyenda de la Fuerza <div>(Star Wars)</div></button>
+        <button class="opcion" onclick="iniciarAventura('warhammer')">Leyenda del Guerrero <div>(Warhammer 40k)</div></button>
+        <button class="opcion" onclick="iniciarAventura('witcher')">Leyenda del Cazador <div>(The Witcher)</div></button>
+    </div>
+
+    <div id="resultado" style="display: none;" class="narracion"></div>
+
+    <script>
+        var narracionEnCurso = false;
+
+        function mostrarParrafos(p) {
+            var resultado = document.getElementById('resultado');
+            var parrafo = document.createElement('p');
+            parrafo.classList.add('transicion-entrada');
+            parrafo.innerHTML = p;
+            resultado.appendChild(parrafo);
+        }
+        function iniciarAventura(opcion) {
+            if (narracionEnCurso) {
+                return; // Si hay una narración en curso, no permitir otra
+            }
+
+            narracionEnCurso = true;
+
+            // Lógica para cada camino de aventura
+            var resultado = document.getElementById('resultado');
+            resultado.innerHTML = '';
+            var narracion = [];
+
+            switch (opcion) {
+                case 'doom':
+                    narracion.push(`<p>El eco de los tambores resonaba en lo profundo de los corazones de los valientes habitantes del Reino de las Mil Dimensiones. El Sendero de la Gloria se abría ante Carlos, y con paso firme, nuestro intrépido protagonista aceptó el desafío de enfrentar las hordas demoníacas en el mundo de "Doom Eternal".</p>`);
+                    narracion.push(`<p>El portal dimensional se abrió frente a él, y sin vacilar, Carlos cruzó el umbral hacia un paisaje infernal. Los cielos enrojecidos y nubes de tormenta presagiaban el caos que se cernía sobre la tierra. La brisa ardiente susurraba lamentos y amenazas, y el retumbar de los pasos demoníacos llenaba el aire.</p>`);
+                    narracion.push(`<p>Portando su escopeta lanzallamas, Carlos avanzó entre ruinas y llamas, adentrándose en una desafiante danza de muerte. Los demonios emergían de las sombras, gruñendo con sed de destrucción y caos. Su sangre ardiente manchaba el suelo mientras Carlos se abría paso con coraje y ferocidad.</p>`);
+                    narracion.push(`<p>Cada esquina era una trampa mortal, y el alarido de los condenados llenaba sus oídos. Pero en su corazón ardía una determinación inquebrantable. Carlos no retrocedió ni un paso, desafiando a las criaturas infernales con la mirada serena y un coraje indomable.</p>`);
+                    narracion.push(`<p>El Sendero de la Gloria exigía más que fuerza y valentía, requería astucia y agilidad. Los demonios eran astutos y rápidos, y Carlos debía aprender a leer sus movimientos y anticipar sus embates. Cada encuentro era una prueba de habilidad y estrategia, y el aprendizaje se convirtió en su aliado más valioso.</p>`);
+                    narracion.push(`<p>A medida que avanzaba, Carlos se encontró con artefactos místicos y armas ancestrales que lo ayudaron a enfrentar la marea infernal. Cada mejora lo hacía más poderoso, y su leyenda comenzó a crecer en las bocas de los sobrevivientes y aliados que encontraba en su camino.</p>`);
+                    narracion.push(`<p>En una encrucijada crucial, Carlos se enfrentó a un temible demonio, una criatura colosal de pesadilla que amenazaba con desatar la perdición sobre la tierra. Fue un enfrentamiento épico, donde cada golpe y cada estrategia determinaron el destino de esta batalla.</p>`);
+                    narracion.push(`<p>Con determinación y habilidad, Carlos logró triunfar sobre la abominación infernal. El cielo rugió y la tierra tembló mientras el mal se desvanecía. La paz comenzó a restaurarse en el mundo, y Carlos emergió de esta gesta como un auténtico héroe.</p>`);
+                    narracion.push(`<p>Su nombre resonó en todo el Reino de las Mil Dimensiones, y las leyendas hablaron del valiente aventurero que se enfrentó a las fuerzas demoníacas en el Sendero de la Gloria. Su historia quedó escrita en los anales de la historia, y su nombre se convirtió en un sinónimo de valor y esperanza.</p>`);
+                    narracion.push(`<p>Así, el primer camino de Carlos en el mundo de Doom Eternal dejó una huella indeleble en su alma y en el corazón de aquellos que escucharon su historia. El Sendero de la Gloria fue solo el comienzo de una odisea que le esperaba, y su determinación y coraje continuarían guiándolo hacia nuevas aventuras y desafíos en los mundos que aguardaban.</p>`);
+                    narracion.push(`<p>¡Feliz cumpleaños, Carlos, protagonista de hazañas legendarias! Que sigas forjando tu leyenda en cada rincón de la Creación, enfrentando los desafíos con valentía y demostrando al mundo que el poder de la gloria reside en el corazón de los verdaderos héroes.</p>`);
+                    resultado.style.display = 'block';
+
+                    // Mostrar el primer párrafo inmediatamente
+                    mostrarParrafos(narracion[0]);
+                    narracion.shift(); // Eliminar el primer párrafo que ya se ha mostrado
+
+                    var index = 0;
+                    var intervalDuration = 7500;
+                    var interval = setInterval(function () {
+                        mostrarParrafos(narracion[index]);
+                        index++;
+                        if (index >= narracion.length) {
+                            clearInterval(interval);
+                            resultado.classList.add('mostrar');
+                            narracionEnCurso = false;
+                        }
+                    }, intervalDuration); // Mostrar un párrafo cada segundo
+                    break;
+                case 'dnd':
+                    narracion.push(`<p>El susurro de los vientos mágicos llevó a Carlos hacia la Ruta del Sabio, una travesía repleta de enigmas y misterios en el mundo de "Dragones y Mazmorras". En el horizonte, se vislumbraba un paisaje de fantasía, con vastos bosques, torres imponentes y montañas cubiertas de nieve, donde la magia fluía como un río en cada rincón.</p>`);
+                    narracion.push(`<p>El portal dimensional lo condujo hacia una antigua biblioteca de conocimientos olvidados, cuyas estanterías albergaban pergaminos ancestrales y tomos polvorientos. El eco de pasos silenciosos resonaba en el recinto, mientras figuras encapuchadas estudiaban sabiduría arcanica.</p>`);
+                    narracion.push(`<p>Guiado por el anhelo de descubrir secretos ocultos, Carlos comenzó su búsqueda. Entre los pergaminos antiguos, halló mapas que conducían hacia laberintos subterráneos y tumbas ancestrales, donde tesoros mágicos yacían esperando ser descubiertos. Cada paso que daba revelaba más detalles de un pasado olvidado.</p>`);
+                    narracion.push(`<p>A medida que se adentraba en el mundo de "Dragones y Mazmorras", Carlos se encontró con seres épicos, desde imponentes dragones de escamas resplandecientes hasta nobles elfos y enanos de mirada sabia. Cada encuentro le enseñaba lecciones de humildad y respeto hacia las distintas criaturas que poblaban estas tierras.</p>`);
+                    narracion.push(`<p>Pronto, Carlos se vio inmerso en una misión épica. Una profecía ancestral lo marcó como el elegido para liberar al reino de una maldición oscura que lo acechaba. Siguiendo los pasos de antiguos héroes, se internó en las profundidades de la Caverna del Abismo, un laberinto misterioso lleno de trampas mortales y guardianes ancestrales.</p>`);
+                    narracion.push(`<p>Cada desafío fue una oportunidad para poner a prueba su astucia y habilidades. Con un corazón valiente y una mente perspicaz, Carlos sorteó obstáculos, resolvió acertijos y desactivó trampas ingeniosas. A medida que se acercaba al corazón del abismo, una presencia oscura y malévola lo aguardaba.</p>`);
+                    narracion.push(`<p>La batalla final fue un enfrentamiento de voluntades y destrezas. El mal ancestral intentó socavar la determinación de Carlos, pero él se aferró a su propósito con un espíritu inquebrantable. La luz de la sabiduría que había adquirido durante su travesía iluminó su camino, y con el poder de la verdad y el coraje, logró romper la maldición y liberar al reino de las sombras.</p>`);
+                    narracion.push(`<p>El sol brilló nuevamente en el cielo, y una sensación de triunfo llenó el corazón de Carlos. Los habitantes de las tierras de "Dragones y Mazmorras" lo aclamaron como un héroe, un sabio aventurero que devolvió la paz y la prosperidad a la tierra.</p>`);
+                    narracion.push(`<p>Su nombre se grabó en las piedras de los antiguos templos y se convirtió en una leyenda que se contaría durante siglos. La Ruta del Sabio no solo lo había llevado a descubrir conocimientos olvidados, sino que también lo había transformado en un ser más sabio y humilde, listo para emprender nuevas travesías y enfrentar los desafíos venideros.</p>`);
+                    narracion.push(`<p>¡Feliz cumpleaños, Carlos, sabio de corazón y mente! Que tu sed de conocimiento nunca se apague, y que sigas desvelando los misterios de cada mundo que explores. Que la sabiduría que has obtenido en esta jornada te guíe hacia nuevas hazañas y que tu legado se perpetúe a través de los tiempos, como un ejemplo de coraje y sabiduría en las tierras de fantasía.</p>`);
+                    resultado.style.display = 'block';
+
+                    // Mostrar el primer párrafo inmediatamente
+                    mostrarParrafos(narracion[0]);
+                    narracion.shift(); // Eliminar el primer párrafo que ya se ha mostrado
+
+                    var index = 0;
+                    var intervalDuration = 7500;
+                    var interval = setInterval(function () {
+                        mostrarParrafos(narracion[index]);
+                        index++;
+                        if (index >= narracion.length) {
+                            clearInterval(interval);
+                            resultado.classList.add('mostrar');
+                            narracionEnCurso = false;
+                        }
+                    }, intervalDuration); // Mostrar un párrafo cada segundo
+                    break;
+                case 'starwars':
+                    narracion.push(`<p>En una galaxia distante, en un tiempo de conflictos y aventuras, Carlos se encontró frente al deslumbrante Sendero de la Fuerza, en el legendario mundo de "Star Wars". Ante él se extendía un universo vasto y misterioso, donde la lucha entre la luz y la oscuridad definía el destino de la galaxia.</p>`);
+                    narracion.push(`<p>Carlos fue acogido por un venerable Maestro Jedi llamado Yoda, cuya sabiduría milenaria iluminó su camino. Bajo la tutela del sabio maestro, Carlos comenzó su entrenamiento como un Jedi, aprendiendo a usar la Fuerza y a dominar el arte del sable láser.</p>`);
+                    narracion.push(`<p>En las vastas salas de la academia Jedi, Carlos se sumergió en el estudio de los antiguos textos y las enseñanzas de los Jedi. A medida que crecía en poder y sabiduría, también se enfrentaba a pruebas y desafíos, enfrentando su propia oscuridad interior y la tentación del lado oscuro.</p>`);
+                    narracion.push(`<p>A lo largo de su viaje, Carlos se encontró con una causa noble: la lucha contra el Imperio Galáctico y la opresión tiránica que asolaba la galaxia. Con su sable láser en mano y su corazón lleno de valentía, se unió a la Rebelión, liderando a los soldados rebeldes en batallas épicas contra las fuerzas del lado oscuro.</p>`);
+                    narracion.push(`<p>En su búsqueda para restablecer el equilibrio en la galaxia, Carlos se enfrentó a poderosos Sith y maestros oscuros. En cada encuentro, la lucha era intensa, y la voluntad de Carlos fue puesta a prueba. Sin embargo, su devoción a la causa justa y su profundo entendimiento de la Fuerza lo guiaron en la senda correcta.</p>`);
+                    narracion.push(`<p>Durante una de sus misiones más arduas, Carlos se encontró con un joven aprendiz Sith, cuyo corazón aún estaba lleno de dudas y miedos. En lugar de ceder al odio y la venganza, Carlos decidió tender la mano al joven y mostrarle el camino de la redención. Su compasión y sabiduría desafiaron las enseñanzas convencionales de los Jedi, pero también demostraron que el amor y la empatía eran armas poderosas contra el lado oscuro.</p>`);
+                    narracion.push(`<p>La batalla final se libró en un enfrentamiento épico contra un Lord Sith oscuro que amenazaba con sumir a la galaxia en la oscuridad. Con el coraje de un verdadero Jedi, Carlos luchó hasta el último aliento, decidido a proteger la paz y la libertad en la galaxia.</p>`);
+                    narracion.push(`<p>En el clímax de la batalla, el sable láser de Carlos chocó contra el del Lord Sith, y una explosión de luz y oscuridad llenó el aire. Cuando el polvo se asentó, Carlos emergió victorioso, con el corazón lleno de triunfo y compasión. El Lord Sith había sido derrotado, y el camino de la Fuerza había sido restablecido en el equilibrio.</p>`);
+                    narracion.push(`<p>A partir de ese momento, Carlos fue conocido como un Jedi legendario, cuyo nombre resonaba en los corazones de aquellos que anhelaban la justicia y la esperanza en la galaxia. Su historia se convirtió en una leyenda que sería contada a lo largo de los tiempos, un ejemplo de coraje y sabiduría en el universo de "Star Wars".</p>`);
+                    narracion.push(`<p>¡Feliz cumpleaños, Carlos, Maestro Jedi! Que la Fuerza te guíe en tu senda y que tus acciones inspiren a otros a luchar por la luz y la justicia. Que tu leyenda perdure a través de las eras, como un símbolo de esperanza en la galaxia lejana y como un protector incansable de la paz en el mundo de "Star Wars".</p>`);
+                    resultado.style.display = 'block';
+
+                    // Mostrar el primer párrafo inmediatamente
+                    mostrarParrafos(narracion[0]);
+                    narracion.shift(); // Eliminar el primer párrafo que ya se ha mostrado
+
+                    var index = 0;
+                    var intervalDuration = 7500;
+                    var interval = setInterval(function () {
+                        mostrarParrafos(narracion[index]);
+                        index++;
+                        if (index >= narracion.length) {
+                            clearInterval(interval);
+                            resultado.classList.add('mostrar');
+                            narracionEnCurso = false;
+                        }
+                    }, intervalDuration); // Mostrar un párrafo cada segundo
+                    break;
+                case 'warhammer':
+                    narracion.push(`<p>En los confines más sombríos y distópicos de la Creación, el destino llevó a Carlos hacia la Senda del Guerrero, en el implacable mundo de "Warhammer 40k". Un lugar donde la guerra era eterna, y la humanidad luchaba desesperadamente contra las fuerzas del Caos y otros enemigos implacables que amenazaban con sumir al universo en la oscuridad.</p>`);
+                    narracion.push(`<p>Allí, Carlos se encontró con los Adeptus Astartes, una raza de superhumanos conocidos como marines espaciales. Su líder, el Capitán Uriel Ventris, vio en Carlos un potencial excepcional y lo aceptó como uno de los suyos, un guerrero elegido para enfrentar los horrores del Caos y proteger a la humanidad.</p>`);
+                    narracion.push(`<p>Con una armadura de combate indestructible y un arsenal de armas letales, Carlos se sometió a rigurosos entrenamientos y rituales de iniciación para convertirse en un Astartes. Su cuerpo y mente fueron mejorados y reforzados, y su espíritu fue templado en el fragor de las batallas simuladas.</p>`);
+                    narracion.push(`<p>La senda del Guerrero exigía lealtad absoluta y una voluntad inquebrantable. Carlos se unió a sus hermanos marines en campañas feroces contra las fuerzas del Caos, enfrentando demonios aterradores y traidores sin piedad. Cada batalla era una danza mortal, y el valor y la estrategia eran cruciales para la supervivencia.</p>`);
+                    narracion.push(`<p>Durante sus misiones, Carlos descubrió que la guerra era una fuerza que lo consumía todo a su paso. No solo se enfrentaba a enemigos exteriores, sino también a conflictos internos dentro de su propio corazón. La línea entre el deber y la moralidad era difusa en este mundo sombrío y desgarrador.</p>`);
+                    narracion.push(`<p>En el corazón de una de sus misiones más peligrosas, Carlos se encontró con un grupo de rebeldes humanos que luchaban por la libertad. Ante la perspectiva de acabar con su lucha, se cuestionó la justicia de su misión y la verdadera naturaleza del enemigo.</p>`);
+                    narracion.push(`<p>Con una sabiduría forjada en el combate y una determinación inquebrantable, Carlos tomó una decisión sorprendente. En lugar de aplastar la resistencia, negoció un acuerdo con los rebeldes, buscando un camino hacia la paz y la reconciliación.</p>`);
+                    narracion.push(`<p>Esta elección no fue fácil, y algunos de sus hermanos marines cuestionaron su juicio. Sin embargo, Carlos demostró que la senda del Guerrero no siempre requería un derramamiento de sangre sin sentido. Podía haber compasión y sabiduría en medio del caos de la guerra.</p>`);
+                    narracion.push(`<p>Su valentía y compasión no pasaron desapercibidas, y su fama como un Comandante astuto y respetado se extendió más allá de las fronteras del reino. El nombre de Carlos se convirtió en un estandarte de esperanza para aquellos que luchaban contra la oscuridad del Caos.</p>`);
+                    narracion.push(`<p>¡Feliz cumpleaños, Carlos, Comandante del Adeptus Astartes! Que tus hazañas en la Senda del Guerrero sean gloriosas y que tu corazón siga siendo un faro de esperanza en un mundo insondable. Que tu legado trascienda las batallas y que tu sabiduría guíe a tus hermanos marines hacia un futuro mejor en el oscuro universo de "Warhammer 40k".</p>`);
+                    resultado.style.display = 'block';
+
+                    // Mostrar el primer párrafo inmediatamente
+                    mostrarParrafos(narracion[0]);
+                    narracion.shift(); // Eliminar el primer párrafo que ya se ha mostrado
+
+                    var index = 0;
+                    var intervalDuration = 7500;
+                    var interval = setInterval(function () {
+                        mostrarParrafos(narracion[index]);
+                        index++;
+                        if (index >= narracion.length) {
+                            clearInterval(interval);
+                            resultado.classList.add('mostrar');
+                            narracionEnCurso = false;
+                        }
+                    }, intervalDuration); // Mostrar un párrafo cada segundo
+                    break;
+                case 'witcher':
+                    narracion.push(`<p>Entre las sombras de las leyendas y los susurros de los bosques encantados, el destino de Carlos lo llevó hacia el Camino del Cazador, en el asombroso mundo de "The Witcher". Un lugar donde la brujería y la magia se entrelazaban en un baile mortal, y donde monstruos aterradores y criaturas oscuras acechaban en la penumbra.</p>`);
+                    narracion.push(`<p>En su viaje, Carlos se encontró con un viejo brujo llamado Geralt de Rivia, conocido por sus hazañas legendarias en la caza de monstruos y su búsqueda de redimir los pecados de un mundo lleno de violencia y ambigüedad moral. Carlos, con un porte valiente y una determinación inquebrantable, se convirtió en el discípulo del brujo, listo para enfrentar las adversidades y abrazar la vida errante de un cazador.</p>`);
+                    narracion.push(`<p>Guiado por los dictados de los contratos de caza, Carlos se aventuró en bosques oscuros y ruinas abandonadas, donde las bestias más siniestras y misteriosas acechaban en la oscuridad. Con su espada de plata en mano y sus hechizos de protección listos, Carlos se convirtió en un cazador de monstruos temible y respetado.</p>`);
+                    narracion.push(`<p>Cada criatura que enfrentó era una prueba de coraje y habilidad. Hombres lobo, vampiros, necrófagos y espectros de todo tipo aparecían en su camino, desafiando su temple y valentía. Sin embargo, Carlos no luchaba solo; el conocimiento adquirido de Geralt y la voluntad de seguir sus enseñanzas lo hicieron más astuto y poderoso.</p>`);
+                    narracion.push(`<p>A lo largo de su jornada, Carlos también se encontró con dilemas morales y decisiones complicadas. En un mundo en el que el bien y el mal se entrelazaban, la elección de la justicia o la misericordia no siempre era sencilla. Sin embargo, su corazón noble y su deseo de proteger a los inocentes lo llevaron a tomar decisiones que le permitieron preservar la humanidad en un mundo sombrío.</p>`);
+                    narracion.push(`<p>En una de sus cacerías más peligrosas, Carlos se enfrentó a un antiguo dragón, cuya sombra cubría una aldea indefensa. Con valentía y astucia, logró desarmar la bestia, no para matarla, sino para liberarla de su corrupción y restablecer el equilibrio en la naturaleza. Su compasión y sabiduría lo convirtieron en un cazador excepcional, distinguiéndose de otros que solo buscaban matar sin razón.</p>`);
+                    narracion.push(`<p>Al final de su travesía, Carlos emergió como un brujo temido y respetado, conocido en todo el Reino de las Mil Dimensiones por su destreza en la caza de monstruos y su espíritu compasivo. Su nombre se convirtió en un susurro esperanzador en los corazones de los necesitados, y su leyenda quedó inscrita en los anales de los cazadores de monstruos más ilustres.</p>`);
+                    narracion.push(`<p>¡Feliz cumpleaños, Carlos, Cazador de Monstruos! Que tu espada siga siendo afilada y tus hechizos sean certeros. Que tu corazón siga siendo noble y tus decisiones sabias. Que en cada travesía encuentres la fuerza para proteger a los inocentes y enfrentar los horrores que aguardan en las sombras. Que tu leyenda perdure en los cantos y los cuentos, como un ejemplo de valor y compasión en el mundo de "The Witcher".</p>`);
+                    resultado.style.display = 'block';
+
+                    // Mostrar el primer párrafo inmediatamente
+                    mostrarParrafos(narracion[0]);
+                    narracion.shift(); // Eliminar el primer párrafo que ya se ha mostrado
+
+                    var index = 0;
+                    var intervalDuration = 7500;
+                    var interval = setInterval(function () {
+                        mostrarParrafos(narracion[index]);
+                        index++;
+                        if (index >= narracion.length) {
+                            clearInterval(interval);
+                            resultado.classList.add('mostrar');
+                            narracionEnCurso = false;
+                        }
+                    }, intervalDuration); // Mostrar un párrafo cada segundo
+                    break;
+                default:
+                    resultado.innerHTML = '<p>¡Carlos está a punto de embarcarse en una emocionante aventura! ¡Elige un camino para él!</p>';
+                    break;
+            }
+
+            // Mostrar gradualmente el contenido del div usando transiciones CSS
+            resultado.style.display = 'block';
+            setTimeout(function () {
+                resultado.classList.add('mostrar');
+            }, 100);
+        }
+    </script>
+</body>
+
+</html>
